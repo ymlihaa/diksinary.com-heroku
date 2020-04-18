@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+  <head>
+    <title>Dıkşınary</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header><h1>dıkşınary.com</h1></header>
+      <section id="add-Item">
+        <!-- <form action=> -->
+          <input
+            type="text"
+            id="word-input"
+            placeholder="Lütfen kelimenizi giriniz !"
+          />
+          <section class="buttons">
+            <button type="submit" onclick="addWord()">ekle</button>
+            <button type="reset" onclick="clear_Input()">reset</button>
+          </section>
+        <!-- </form> -->
+      </section>
+
+      <section id="cards"></section>
+      Powered by<a href=" http://translate.yandex.com"> Yandex Translate</a>
+    </div>
+
+    <script src="index.js"></script>
+
+  </body>
+</html>
