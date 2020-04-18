@@ -1,0 +1,15 @@
+algoritma
+
+
+1 kelimeyi gir
+
+2 ekleye bas
+
+title: girilen kelimeyi gir
+tanıma bişiler salla
+time eklenilen anın zamanını ekle 
+
+bu işlemler bittiğinde bunu node olarak ekle 
+
+
+<section class="card"><h2>value</h2>

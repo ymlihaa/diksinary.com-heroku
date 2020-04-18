@@ -12,21 +12,14 @@
 // import env from".env"
 
 function addWord() {
+  // Zaman Fonksiyonu
+  var dataRes;
   var time = new Date();
   time = time.toDateString();
-  // var node;
-  var lang = "tr";
-  var text = document.getElementById("word-input").value;
+  const lang = "tr";
+  const text = document.getElementById("word-input").value;
   const API_KEY =
     " trnsl.1.1.20200418T031625Z.9cec77fc8baa52af.4342049eae7cc356f4d7cd8f54034fd7a001783f";
-  // const result = $.get(
-  //   "https://translate.yandex.net/api/v1.5/tr.json/translate?" +
-  //     API_KEY +
-  //     "&" +
-  //     text +
-  //     "&lang"
-  // );
-  var deneme;
   fetch(
     "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" +
       API_KEY +
@@ -39,10 +32,15 @@ function addWord() {
       return response.json();
     })
     .then((data) => {
-      // node
+      dataRes = data.text;
+      console.log("dataRes:" + dataRes);
+      document.getElementById("lagaluga").innerHTML = dataRes.text;
       console.log(data.text);
     });
-  // console.log(data.text)
+
+  console.log("flag");
+  // CARDLARIN HTML ELEMENTİ OLARAK KURULUMU
+
   cardsTag = document.getElementById("cards");
 
   var strHtml = document.createElement("section");
@@ -50,6 +48,10 @@ function addWord() {
   attr.value = "card";
   strHtml.setAttributeNode(attr);
   var h2 = document.createElement("h2");
+  attr = document.createAttribute("id");
+  attr.value = "card-title";
+
+  h2.setAttributeNode(attr);
   var node = document.createTextNode(
     document.getElementById("word-input").value.toUpperCase()
   );
@@ -57,7 +59,11 @@ function addWord() {
   strHtml.appendChild(h2);
 
   var p = document.createElement("p");
-  node = document.createTextNode("burası tanım kısmı");
+   attr = document.createAttribute("id");
+  attr.value = "card-body";
+  p.setAttributeNode(attr);
+
+  node = document.createTextNode(this.response);
   p.appendChild(node);
   strHtml.appendChild(p);
 
@@ -72,9 +78,3 @@ function addWord() {
 function clear_Input() {
   document.getElementById("word-input").value = "";
 }
-
-// function translate{
-
-//   })
-
-// }
