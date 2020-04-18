@@ -34,7 +34,7 @@ function addWord() {
     .then((data) => {
       dataRes = data.text;
       console.log("dataRes:" + dataRes);
-      document.getElementById("lagaluga").innerHTML = dataRes.text;
+      // document.getElementById("lagaluga").innerHTML = dataRes.text;
       console.log(data.text);
     });
 
@@ -59,7 +59,7 @@ function addWord() {
   strHtml.appendChild(h2);
 
   var p = document.createElement("p");
-   attr = document.createAttribute("id");
+  attr = document.createAttribute("id");
   attr.value = "card-body";
   p.setAttributeNode(attr);
 
