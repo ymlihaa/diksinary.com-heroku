@@ -5,15 +5,17 @@
   </head>
 
   <body>
-    <section class="title">dıkşınary.com</section>
+
+    <div class="menu-btn">
+      <a class="lc" id="home">Home</a>
+      <a class="lc" href="scrollukaydir">Cards</a>
+      <a class="lc account" id="logout">LogOut</a>
+    </div>
+      <section class="title">dıkşınary.com
+      </section>
+
     <div class="wrapper">
-      <header>
-        <section class="links">
-          <a class="lc" href="#">Home</a>
-          <a class="lc" href="#">Cards</a>
-          <a class="lc account" href="#">LogOut</a>
-        </section>
-      </header>
+
       <section id="add-Item">
         <!-- <form action=> -->
           <input
@@ -32,6 +34,17 @@
       <section class="foo">Powered by<a href=" http://translate.yandex.com"> Yandex Translate</a>
       </section>
     </div>
+
+
+    
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
 
     <script src="/assets/js/app/index.js"></script>
 

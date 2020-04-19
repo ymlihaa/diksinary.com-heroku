@@ -15,25 +15,20 @@ body {
   padding: inherit;
   margin: inherit;
 }
-
-.title {
-  height: 25vh;
-  background-color: rgb(235, 53, 82);
-  font-size: calc(1px + 150 * ((100vw - 320px) / 1120));
-  line-height: 1.2;
-  font-weight: 900;
-  letter-spacing: 0.03em;
+a{
   text-align: center;
-}
-
-.links {
-  margin-left: auto;
+  margin-top: 1px;
   margin-right: 10px;
 }
 
+.menu-btn{
+  background-color: rgb(235, 53, 82);
+  float: right;
+}
+
+
 .lc {
   width: 3em;
-  border: 2px solid #fafafa;
   display: inline-block;
   cursor: pointer;
   color: white;
@@ -45,6 +40,21 @@ body {
 .lc:hover {
   text-decoration: underline;
 }
+
+
+
+.title {
+  height: 25vh;
+  background-color: rgb(235, 53, 82);
+  font-size: calc(1px + 150 * ((100vw - 320px) / 1120));
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+
+
 
 .account:hover {
   text-decoration: none;

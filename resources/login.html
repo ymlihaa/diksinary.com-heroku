@@ -28,7 +28,7 @@
   <body>
     <section class="title">dıkşınary.com</section>
     <div class="wrapper">
-      <form>
+      <div class="form">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input
@@ -55,11 +55,11 @@
             >Check me out</label
           >
         </div>
-        <button type="submit" class="btn btn-primary button">Log-ın</button>
-        <button type="submit" class="btn btn-primary button button">
+        <button type="submit" id="btn-login" class="btn btn-primary button">Log-ın</button>
+        <button type="submit" id="btn-register" class="btn btn-primary button button">
           Register
         </button>
-      </form>
+      </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
@@ -70,5 +70,7 @@
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
+    <script src="../assets/js/app/login.js"></script>
   </body>
 </html>

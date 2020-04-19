@@ -19,7 +19,12 @@ document.querySelector("#btn").addEventListener("click", () => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
-      window.location.href = "index.html";
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = "index.html";
+        });
     })
     .catch((err) => {
       alert(err.message);
