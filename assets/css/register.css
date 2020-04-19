@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Lobster&display=swap&family=PT+Sans:wght@700&display=swap");
+
+body {
+  font-family: "PT Sans", sans-serif !important;
+}
+
+.title {
+  height: 25vh;
+  background-color: rgb(235, 53, 82);
+  font-size: calc(1px + 150 * ((100vw - 320px) / 1120));
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.wrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background-color: rgb(235, 53, 82) !important;
+  border-color: rgb(235, 53, 82) !important;
+}
+
+.button:hover {
+  background-color: black !important;
+  border-color: black !important;
+}
