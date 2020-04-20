@@ -1,5 +1,3 @@
-let current_User = "";
-
 const firebaseConfig = {
   apiKey: "AIzaSyCTwdHnyx32m8Ksktkevcjn0gzRXfBpWio",
   authDomain: "mysozluk-39b91.firebaseapp.com",
@@ -10,21 +8,17 @@ const firebaseConfig = {
   appId: "1:99167490466:web:6a61128b0a10743fdf22fb",
   measurementId: "G-EQRNVJ2L8B",
 };
+
+var current_User;
+
 firebase.initializeApp(firebaseConfig);
 
 const lang = "tr";
 const API_KEY =
   " trnsl.1.1.20200418T031625Z.9cec77fc8baa52af.4342049eae7cc356f4d7cd8f54034fd7a001783f";
-let URL =
-  "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" +
-  API_KEY +
-  "&text=" +
-  document.getElementById("word-input").value +
-  "&lang=" +
-  lang;
 
 function request_API() {
-  var flag;
+  let flag;
 
   fetch(
     "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" +
@@ -38,14 +32,16 @@ function request_API() {
       return response.json();
     })
     .then(function (data) {
-      flag = data;
-      createNewElement(flag.text);
+      saveToDatabase(
+        data.text.toString(),
+        document.getElementById("word-input").toString()
+      );
       document.querySelector("#word-input").value = "";
     });
 }
 // -------------------------------------------------------------------
 
-function createNewElement(flag) {
+function createNewElement(flag, title = "") {
   let attr;
   let section;
   let h2;
@@ -67,12 +63,14 @@ function createNewElement(flag) {
   attr.value = "card-title";
 
   h2.setAttributeNode(attr);
-  if (document.getElementById("word-input").value == "") {
-    alert("Lütfen bir kelime giriniz !");
-  } else {
+  // alert("Lütfen bir kelime giriniz !");
+  if (!(title == "")) {
     node = document.createTextNode(
-      document.getElementById("word-input").value.toUpperCase()
+      // document.getElementById("word-input").value.toUpperCase()
+      title
     );
+  } else {
+    node = document.createTextNode(document.querySelector("#word-input").value);
   }
   h2.appendChild(node);
   section.appendChild(h2);
@@ -95,32 +93,51 @@ function createNewElement(flag) {
   document.getElementById("cards").appendChild(section);
 }
 
-firebase.auth().onAuthStateChanged((user) => {
-  let data;
-  if (user) {
-    document.querySelector("#logout").addEventListener("click", () => {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          window.location.href = "login.html";
-        });
-
-      document
-        .querySelector("#sendToDatabase")
-        .addEventListener("click", () => {
-          data = document.querySelector("#word-input").value;
-
-          firebase
-            .database()
-            .ref()
-            .child("users")
-            .child(current_User)
-            .child("cards")
-            .push({
-              word: data,
-            });
-        });
+function saveToDatabase(flag, title) {
+  data = document.querySelector("#word-input").value;
+  firebase
+    .database()
+    .ref()
+    .child("users")
+    .child(current_User)
+    .child("cards")
+    .push({
+      word: flag,
+      title: document.querySelector("#word-input").value.toString(),
     });
-  }
-});
+}
+
+function onLoad() {
+  firebase.auth().onAuthStateChanged((user) => {
+    let data;
+    current_User = user.uid;
+
+    if (user) {
+      console.log(current_User);
+
+      document.querySelector("#logout").addEventListener("click", () => {
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            window.location.href = "login.html";
+          });
+      });
+
+      // document.querySelector("#SendToData").addEventListener("click", () => {});
+    }
+
+    // alert(current_User);
+    let dataRef = firebase
+      .database()
+      .ref()
+      .child("users/" + current_User)
+      .child("cards");
+
+    dataRef.on("value", (snapshot) => {
+      snapshot.forEach((element) => {
+        createNewElement(element.val().word.toString(), element.val().title);
+      });
+    });
+  });
+}
