@@ -1,4 +1,5 @@
-// var albums;
+let current_User = "";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCTwdHnyx32m8Ksktkevcjn0gzRXfBpWio",
   authDomain: "mysozluk-39b91.firebaseapp.com",
@@ -9,10 +10,7 @@ const firebaseConfig = {
   appId: "1:99167490466:web:6a61128b0a10743fdf22fb",
   measurementId: "G-EQRNVJ2L8B",
 };
-
 firebase.initializeApp(firebaseConfig);
-
-var node;
 
 const lang = "tr";
 const API_KEY =
@@ -24,27 +22,9 @@ let URL =
   document.getElementById("word-input").value +
   "&lang=" +
   lang;
-console.log(URL);
 
-function addReq() {
-  console.log("input : " + document.getElementById("word-input").value);
+function request_API() {
   var flag;
-  // req
-  //   .get(
-  //     "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" +
-  //       API_KEY +
-  //       "&text=" +
-  //       document.getElementById("word-input").value +
-  //       "&lang=" +
-  //       lang
-  //   )
-  //   .then((data) => {
-  //     albums = data;
-  //     console.log("albums : " + albums);
-
-  //     console.log("data : " + data);
-  //   })
-  //   .catch((err) => console.log(err));
 
   fetch(
     "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" +
@@ -58,64 +38,65 @@ function addReq() {
       return response.json();
     })
     .then(function (data) {
-      flag = data.text;
-      console.log(data);
-      node = document.createTextNode(flag);
+      flag = data;
+      createNewElement(flag.text);
+      document.querySelector("#word-input").value = "";
     });
-
-  return node;
 }
-
 // -------------------------------------------------------------------
 
-function addWord() {
-  var time = new Date();
+function createNewElement(flag) {
+  let attr;
+  let section;
+  let h2;
+  let h5;
+  let node;
+  let p;
+
+  let time = new Date();
   time = time.toDateString();
 
   // CARDLARIN HTML ELEMENTİ OLARAK KURULUMU
 
-  cardsTag = document.getElementById("cards");
-
-  var strHtml = document.createElement("section");
-  var attr = document.createAttribute("class");
+  section = document.createElement("section");
+  attr = document.createAttribute("class");
   attr.value = "card";
-  strHtml.setAttributeNode(attr);
-  var h2 = document.createElement("h2");
+  section.setAttributeNode(attr);
+  h2 = document.createElement("h2");
   attr = document.createAttribute("id");
   attr.value = "card-title";
 
   h2.setAttributeNode(attr);
-  var node = document.createTextNode(
-    document.getElementById("word-input").value.toUpperCase()
-  );
+  if (document.getElementById("word-input").value == "") {
+    alert("Lütfen bir kelime giriniz !");
+  } else {
+    node = document.createTextNode(
+      document.getElementById("word-input").value.toUpperCase()
+    );
+  }
   h2.appendChild(node);
-  strHtml.appendChild(h2);
-
-  var p = document.createElement("p");
+  section.appendChild(h2);
+  p = document.createElement("p");
   attr = document.createAttribute("id");
   attr.value = "card-body";
   p.setAttributeNode(attr);
+  pText = document.createTextNode(flag);
+  p.appendChild(pText);
+  section.appendChild(p);
 
-  node = addReq();
-  p.appendChild(node);
-  strHtml.appendChild(p);
-
-  var h5 = document.createElement("h5");
+  h5 = document.createElement("h5");
   attr = document.createAttribute("id");
   attr.value = "card-timeStamp";
   h5.setAttributeNode(attr);
   node = document.createTextNode(time);
   h5.appendChild(node);
-  strHtml.appendChild(h5);
+  section.appendChild(h5);
 
-  document.getElementById("cards").appendChild(strHtml);
-}
-
-function clear_Input() {
-  document.getElementById("word-input").value = "";
+  document.getElementById("cards").appendChild(section);
 }
 
 firebase.auth().onAuthStateChanged((user) => {
+  let data;
   if (user) {
     document.querySelector("#logout").addEventListener("click", () => {
       firebase
@@ -123,6 +104,22 @@ firebase.auth().onAuthStateChanged((user) => {
         .signOut()
         .then(() => {
           window.location.href = "login.html";
+        });
+
+      document
+        .querySelector("#sendToDatabase")
+        .addEventListener("click", () => {
+          data = document.querySelector("#word-input").value;
+
+          firebase
+            .database()
+            .ref()
+            .child("users")
+            .child(current_User)
+            .child("cards")
+            .push({
+              word: data,
+            });
         });
     });
   }

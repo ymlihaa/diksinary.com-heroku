@@ -24,8 +24,7 @@
             placeholder="Lütfen kelimenizi giriniz !"
           />
           <section class="buttons">
-            <button type="submit" onclick="addWord()">ekle</button>
-            <button  type="reset" onclick="clear_Input()">reset</button>
+            <button id="sendToDatabase" type="submit" onclick="request_API()">ekle</button>
           </section>
         <!-- </form> -->
       </section>
@@ -44,8 +43,7 @@
 
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-database.js"></script>
     <script src="/assets/js/app/index.js"></script>
 
   </body>

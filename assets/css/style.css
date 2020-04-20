@@ -15,17 +15,16 @@ body {
   padding: inherit;
   margin: inherit;
 }
-a{
+a {
   text-align: center;
   margin-top: 1px;
   margin-right: 10px;
 }
 
-.menu-btn{
+.menu-btn {
   background-color: rgb(235, 53, 82);
   float: right;
 }
-
 
 .lc {
   width: 3em;
@@ -41,8 +40,6 @@ a{
   text-decoration: underline;
 }
 
-
-
 .title {
   height: 25vh;
   background-color: rgb(235, 53, 82);
@@ -52,9 +49,6 @@ a{
   letter-spacing: 0.03em;
   text-align: center;
 }
-
-
-
 
 .account:hover {
   text-decoration: none;
@@ -146,6 +140,14 @@ button:hover {
   border-color: rgb(247, 247, 247);
   border-image: initial;
   text-decoration: none;
+
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(
+    1.1
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 .card > #card-title {
