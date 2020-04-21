@@ -18,8 +18,6 @@ const API_KEY =
   " trnsl.1.1.20200418T031625Z.9cec77fc8baa52af.4342049eae7cc356f4d7cd8f54034fd7a001783f";
 
 function request_API() {
-  let flag;
-
   fetch(
     "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" +
       API_KEY +
@@ -36,6 +34,7 @@ function request_API() {
         data.text.toString(),
         document.getElementById("word-input").toString()
       );
+      get_Last_Save();
       document.querySelector("#word-input").value = "";
     });
 }
@@ -134,10 +133,34 @@ function onLoad() {
       .child("users/" + current_User)
       .child("cards");
 
-    dataRef.on("value", (snapshot) => {
+    dataRef.once("value", (snapshot) => {
       snapshot.forEach((element) => {
         createNewElement(element.val().word.toString(), element.val().title);
       });
     });
   });
 }
+
+function get_Last_Save() {
+  // firebase.auth().onAuthStateChanged((user) => {
+  let dataRef = firebase
+    .database()
+    .ref()
+    .child("users/" + current_User + "/cards" + "/");
+  // .child("cards")
+
+  dataRef
+    .endAt()
+    .limitToLast(1)
+    .once("child_added", (snapshot) => {
+      console.log(snapshot.val());
+      createNewElement(snapshot.val().word, snapshot.val().title);
+    });
+  // });
+}
+
+// random_Card_Title_Color(){
+
+//   // BURAYA RANDOM FONKSİYONU YARDIMIYLA 1 ARRAYDEN RENK KODLARI SEÇİLEREK CARDIN CSS İ NE EKLENECEK
+
+// }
