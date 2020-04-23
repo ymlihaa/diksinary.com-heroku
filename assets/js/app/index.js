@@ -40,7 +40,11 @@ function request_API() {
 }
 // -------------------------------------------------------------------
 
-function createNewElement(flag, title = "") {
+function createNewElement(
+  flag,
+  title = "",
+  uid = current_User + Math.floor(Math.random() * 100).toString()
+) {
   let attr;
   let section;
   let h2;
@@ -58,8 +62,13 @@ function createNewElement(flag, title = "") {
   attr.value = "card";
   section.setAttributeNode(attr);
   h2 = document.createElement("h2");
-  attr = document.createAttribute("id");
+  attr = document.createAttribute("class");
   attr.value = "card-title";
+
+  h2.setAttributeNode(attr);
+
+  attr = document.createAttribute("id");
+  attr.value = uid;
 
   h2.setAttributeNode(attr);
   // alert("Lütfen bir kelime giriniz !");
@@ -74,22 +83,27 @@ function createNewElement(flag, title = "") {
   h2.appendChild(node);
   section.appendChild(h2);
   p = document.createElement("p");
-  attr = document.createAttribute("id");
+  attr = document.createAttribute("class");
   attr.value = "card-body";
   p.setAttributeNode(attr);
+
+  p.setAttributeNode(attr);
+
   pText = document.createTextNode(flag);
   p.appendChild(pText);
   section.appendChild(p);
 
   h5 = document.createElement("h5");
-  attr = document.createAttribute("id");
+  attr = document.createAttribute("class");
   attr.value = "card-timeStamp";
   h5.setAttributeNode(attr);
   node = document.createTextNode(time);
   h5.appendChild(node);
   section.appendChild(h5);
 
-  document.getElementById("cards").appendChild(section);
+  document.querySelector(".cards").appendChild(section);
+
+  rand_Color(uid);
 }
 
 function saveToDatabase(flag, title) {
@@ -159,8 +173,23 @@ function get_Last_Save() {
   // });
 }
 
-// random_Card_Title_Color(){
-
-//   // BURAYA RANDOM FONKSİYONU YARDIMIYLA 1 ARRAYDEN RENK KODLARI SEÇİLEREK CARDIN CSS İ NE EKLENECEK
-
-// }
+function rand_Color(uid = "bos") {
+  // BURAYA RANDOM FONKSİYONU YARDIMIYLA 1 ARRAYDEN RENK KODLARI SEÇİLEREK CARDIN CSS İ NE EKLENECEK
+  const color_arr = [
+    "#FF5733",
+    "#581845",
+    "#C70039",
+    "#DAF7A6",
+    "#FF33C4",
+    "#6533FF",
+    "#33FF82",
+    "#FFE933",
+    "#33FF69",
+    "#9433FF",
+  ];
+  let rand_val = Math.floor(Math.random() * 10); // returns a random integer from 0 to 9
+  let element = document.querySelector("#" + uid);
+  attr_Color = color_arr[rand_val];
+  element.style.backgroundColor = attr_Color;
+  console.log(uid);
+}
