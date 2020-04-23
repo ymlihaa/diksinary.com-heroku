@@ -66,6 +66,11 @@ function createNewElement(
   // --------------------------------------------
 
 
+
+
+
+
+// -----------------------------------------------
   // h2 element created
   h2 = document.createElement("h2");
   attr = document.createAttribute("class");
@@ -75,9 +80,11 @@ function createNewElement(
   attr.value = uid;
   h2.setAttributeNode(attr);
 // card-title class adding /uniq ıd declare h2
+// -----------------------------------------------
 
 
 
+// -----------------------------------------------
 
   // İnput dolumu bosmu ?
   if (!(title == "")) {
@@ -94,8 +101,11 @@ function createNewElement(
 // h2 elementinin texti eklendi
   section.appendChild(h2);
 //h2 elementi section elementine child olarak bağlandı 
+// -----------------------------------------------
 
 
+
+// -----------------------------------------------
 // p element created
   p = document.createElement("p");
   attr = document.createAttribute("class");
@@ -106,8 +116,12 @@ function createNewElement(
   p.appendChild(pText);
   section.appendChild(p);
 // p element adding child section
+// -----------------------------------------------
 
 
+
+
+// -----------------------------------------------
 
 // h5 element created
   h5 = document.createElement("h5");
@@ -120,10 +134,18 @@ function createNewElement(
   h5.appendChild(node);
   section.appendChild(h5);
   // h5 element adding child section
+// -----------------------------------------------
 
+
+
+
+// -----------------------------------------------
 
   // section elementi classı cards olan elemente child olarak eklendi
   document.querySelector(".cards").appendChild(section);
+// -----------------------------------------------
+
+
 
   rand_Color(uid);
 }
