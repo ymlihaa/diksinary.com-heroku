@@ -57,21 +57,29 @@ function createNewElement(
 
   // CARDLARIN HTML ELEMENTİ OLARAK KURULUMU
 
+  // Section tag created
   section = document.createElement("section");
   attr = document.createAttribute("class");
+  // card class adding
   attr.value = "card";
   section.setAttributeNode(attr);
+  // --------------------------------------------
+
+
+  // h2 element created
   h2 = document.createElement("h2");
   attr = document.createAttribute("class");
   attr.value = "card-title";
-
   h2.setAttributeNode(attr);
-
   attr = document.createAttribute("id");
   attr.value = uid;
-
   h2.setAttributeNode(attr);
-  // alert("Lütfen bir kelime giriniz !");
+// card-title class adding /uniq ıd declare h2
+
+
+
+
+  // İnput dolumu bosmu ?
   if (!(title == "")) {
     node = document.createTextNode(
       // document.getElementById("word-input").value.toUpperCase()
@@ -80,27 +88,41 @@ function createNewElement(
   } else {
     node = document.createTextNode(document.querySelector("#word-input").value);
   }
+  // -----------------------------------------------------------------
+
   h2.appendChild(node);
+// h2 elementinin texti eklendi
   section.appendChild(h2);
+//h2 elementi section elementine child olarak bağlandı 
+
+
+// p element created
   p = document.createElement("p");
   attr = document.createAttribute("class");
   attr.value = "card-body";
   p.setAttributeNode(attr);
-
-  p.setAttributeNode(attr);
-
+  // p element adding card-body class
   pText = document.createTextNode(flag);
   p.appendChild(pText);
   section.appendChild(p);
+// p element adding child section
 
+
+
+// h5 element created
   h5 = document.createElement("h5");
   attr = document.createAttribute("class");
   attr.value = "card-timeStamp";
   h5.setAttributeNode(attr);
+
+  // h5 element adding card-timeStamp class
   node = document.createTextNode(time);
   h5.appendChild(node);
   section.appendChild(h5);
+  // h5 element adding child section
 
+
+  // section elementi classı cards olan elemente child olarak eklendi
   document.querySelector(".cards").appendChild(section);
 
   rand_Color(uid);
