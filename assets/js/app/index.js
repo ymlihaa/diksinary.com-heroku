@@ -1,3 +1,5 @@
+let item;
+
 const firebaseConfig = {
   apiKey: "AIzaSyCTwdHnyx32m8Ksktkevcjn0gzRXfBpWio",
   authDomain: "mysozluk-39b91.firebaseapp.com",
@@ -43,6 +45,7 @@ function request_API() {
 function createNewElement(
   flag,
   title = "",
+  itemKey,
   uid = current_User + Math.floor(Math.random() * 100).toString()
 ) {
   let attr;
@@ -51,6 +54,7 @@ function createNewElement(
   let h5;
   let node;
   let p;
+  let deletebttn;
 
   let time = new Date();
   time = time.toDateString();
@@ -65,12 +69,31 @@ function createNewElement(
   section.setAttributeNode(attr);
   // --------------------------------------------
 
+  // delete button created
+  // -----------------------------------------------
 
+  // div = document.createElement("div");
+  // attr = document.createAttribute("class");
+  // attr.value = "remove-section";
+  // div.setAttributeNode(attr);
+  bttn = document.createElement("BUTTON");
+  attr = document.createAttribute("class");
+  attr.value = "remove-section";
+  bttn.setAttributeNode(attr);
 
+  attr = document.createAttribute("onClick");
+  attr.value = "delelete_Item()";
+  bttn.setAttributeNode(attr);
 
+  attr = document.createAttribute("value");
+  attr.value = itemKey;
+  bttn.setAttributeNode(attr);
+  pText = document.createTextNode("Sil");
+  bttn.appendChild(pText);
 
+  section.appendChild(bttn);
 
-// -----------------------------------------------
+  // -----------------------------------------------
   // h2 element created
   h2 = document.createElement("h2");
   attr = document.createAttribute("class");
@@ -79,12 +102,10 @@ function createNewElement(
   attr = document.createAttribute("id");
   attr.value = uid;
   h2.setAttributeNode(attr);
-// card-title class adding /uniq ıd declare h2
-// -----------------------------------------------
+  // card-title class adding /uniq ıd declare h2
+  // -----------------------------------------------
 
-
-
-// -----------------------------------------------
+  // -----------------------------------------------
 
   // İnput dolumu bosmu ?
   if (!(title == "")) {
@@ -98,15 +119,13 @@ function createNewElement(
   // -----------------------------------------------------------------
 
   h2.appendChild(node);
-// h2 elementinin texti eklendi
+  // h2 elementinin texti eklendi
   section.appendChild(h2);
-//h2 elementi section elementine child olarak bağlandı 
-// -----------------------------------------------
+  //h2 elementi section elementine child olarak bağlandı
+  // -----------------------------------------------
 
-
-
-// -----------------------------------------------
-// p element created
+  // -----------------------------------------------
+  // p element created
   p = document.createElement("p");
   attr = document.createAttribute("class");
   attr.value = "card-body";
@@ -115,15 +134,12 @@ function createNewElement(
   pText = document.createTextNode(flag);
   p.appendChild(pText);
   section.appendChild(p);
-// p element adding child section
-// -----------------------------------------------
+  // p element adding child section
+  // -----------------------------------------------
 
+  // -----------------------------------------------
 
-
-
-// -----------------------------------------------
-
-// h5 element created
+  // h5 element created
   h5 = document.createElement("h5");
   attr = document.createAttribute("class");
   attr.value = "card-timeStamp";
@@ -134,18 +150,13 @@ function createNewElement(
   h5.appendChild(node);
   section.appendChild(h5);
   // h5 element adding child section
-// -----------------------------------------------
+  // -----------------------------------------------
 
-
-
-
-// -----------------------------------------------
+  // -----------------------------------------------
 
   // section elementi classı cards olan elemente child olarak eklendi
   document.querySelector(".cards").appendChild(section);
-// -----------------------------------------------
-
-
+  // -----------------------------------------------
 
   rand_Color(uid);
 }
@@ -189,33 +200,46 @@ function onLoad() {
       .database()
       .ref()
       .child("users/" + current_User)
-      .child("cards");
+      .child("cards/");
 
     dataRef.once("value", (snapshot) => {
       snapshot.forEach((element) => {
-        createNewElement(element.val().word.toString(), element.val().title);
+        item = element.key;
+        console.log(item);
+        createNewElement(element.val().word.toString(), element.val().title),
+          item;
       });
     });
   });
 }
 
 function get_Last_Save() {
-  // firebase.auth().onAuthStateChanged((user) => {
   let dataRef = firebase
     .database()
     .ref()
     .child("users/" + current_User + "/cards" + "/");
-  // .child("cards")
 
   dataRef
     .endAt()
     .limitToLast(1)
     .once("child_added", (snapshot) => {
-      console.log(snapshot.val());
-      createNewElement(snapshot.val().word, snapshot.val().title);
+      item = snapshot.key;
+      console.log("get:" + item);
+      createNewElement(snapshot.val().word, snapshot.val().title, item);
     });
-  // });
 }
+
+// document.querySelector(".remove-section").addEventListener("click", () => {
+//   console.log("click");
+//   let removeData = document.querySelector(this).data;
+//   firebase
+//     .database()
+//     .ref("users/" + current_User)
+//     .child("cards")
+//     .child(removeData)
+//     .remove();
+//   onload();
+// });
 
 function rand_Color(uid = "bos") {
   // BURAYA RANDOM FONKSİYONU YARDIMIYLA 1 ARRAYDEN RENK KODLARI SEÇİLEREK CARDIN CSS İ NE EKLENECEK
@@ -236,4 +260,18 @@ function rand_Color(uid = "bos") {
   attr_Color = color_arr[rand_val];
   element.style.backgroundColor = attr_Color;
   console.log(uid);
+}
+
+function delelete_Item() {
+  let removeData = document.querySelector(".remove-section").value;
+  console.log("remove : " + removeData);
+
+  firebase
+    .database()
+    .ref("users/" + current_User)
+    .child("cards")
+    .child(removeData)
+    .remove();
+
+  console.log("clicked");
 }
