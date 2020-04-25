@@ -274,4 +274,6 @@ function delelete_Item() {
     .remove();
 
   console.log("clicked");
+
+  window.location.href = "index.html";
 }
