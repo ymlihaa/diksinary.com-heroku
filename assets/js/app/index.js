@@ -42,7 +42,7 @@ function request_API() {
 }
 // -------------------------------------------------------------------
 
-function createNewElement(flag, title = "", itemKey, uid) {
+function createNewElement(flag, title = "", itemKey, uid, time) {
   let attr;
   let section;
   let h2;
@@ -50,9 +50,6 @@ function createNewElement(flag, title = "", itemKey, uid) {
   let node;
   let p;
   let deletebttn;
-
-  let time = new Date();
-  time = time.toDateString();
 
   // CARDLARIN HTML ELEMENTİ OLARAK KURULUMU
 
@@ -174,6 +171,8 @@ function createNewElement(flag, title = "", itemKey, uid) {
 }
 
 function saveToDatabase(flag, title) {
+  let time = new Date();
+  time = time.toDateString();
   data = document.querySelector("#word-input").value;
   firebase
     .database()
@@ -184,6 +183,7 @@ function saveToDatabase(flag, title) {
     .push({
       word: flag,
       title: document.querySelector("#word-input").value.toString(),
+      time: time,
     });
 }
 
@@ -210,6 +210,7 @@ function onLoad() {
     }
 
     // alert(current_User);
+
     let dataRef = firebase
       .database()
       .ref()
@@ -225,7 +226,8 @@ function onLoad() {
           element.val().word.toString(),
           element.val().title,
           item,
-          userID
+          userID,
+          element.val().time
         );
       });
     });
@@ -233,6 +235,7 @@ function onLoad() {
 }
 
 function get_Last_Save() {
+
   let dataRef = firebase
     .database()
     .ref()
@@ -245,7 +248,13 @@ function get_Last_Save() {
       item = snapshot.key;
       userID = current_User + Math.floor(Math.random() * 100).toString();
       console.log("get:" + item);
-      createNewElement(snapshot.val().word, snapshot.val().title, item, userID);
+      createNewElement(
+        snapshot.val().word,
+        snapshot.val().title,
+        item,
+        userID,
+        snapshot.val().time
+      );
     });
 }
 

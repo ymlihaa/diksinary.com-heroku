@@ -22,7 +22,8 @@ document.querySelector("#btn-login").addEventListener("click", () => {
       window.location.href = "index.html";
     })
     .catch((err) => {
-      alert(err.message);
+      alert("KULLANICI ADI YADA ŞİFRE HATALI ");
+      // document.getElementById("err").innerHTML="Kullanıcı Adı yada Parola Hatalı !"
     });
 });
 

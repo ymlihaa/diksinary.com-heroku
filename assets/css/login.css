@@ -2,11 +2,12 @@
 
 body {
   font-family: "PT Sans", sans-serif !important;
+  background-color: #eff7f6;
 }
 
 .title {
   height: 25vh;
-  background-color: rgb(235, 53, 82);
+  /* background-color: rgb(235, 53, 82); */
   font-size: calc(1px + 150 * ((100vw - 320px) / 1120));
   line-height: 1.2;
   font-weight: 900;

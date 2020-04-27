@@ -4,20 +4,21 @@ body {
   font-weight: 400;
   font-style: normal;
   line-height: 1.8em;
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #eff7f6;
   padding: 0;
   margin: 0;
 }
 
 .header {
-  height: 4vh;
-  background-color: rgb(235, 53, 82);
+  height: 10vh;
+  /* background: url("../images/rene.jpg"); */
   /* font-size: calc(1px + 150 * ((50vw - 120px) / 1020)); */
   line-height: 1.2;
   font-weight: 900;
   letter-spacing: 0.03em;
   text-align: center;
-  color: white;
+  color: black;
 }
 
 .title {
@@ -30,8 +31,7 @@ body {
 .menu-bttn {
   float: right;
   cursor: pointer;
-  color: white;
-  background-color: rgb(235, 53, 82);
+  /* background-color: rgb(235, 53, 82); */
 }
 
 .wrapper {
@@ -45,7 +45,7 @@ a {
   text-align: center;
   margin-top: 1px;
   margin-right: 10px;
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
@@ -112,7 +112,7 @@ button:hover {
   margin-top: 50px;
   display: flex;
   flex-direction: row-reverse;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   justify-content: center;
   align-items: center;
 }
