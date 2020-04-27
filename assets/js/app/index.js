@@ -191,6 +191,8 @@ function onLoad() {
   firebase.auth().onAuthStateChanged((user) => {
     let data;
     current_User = user.uid;
+    // console.log("display name : " + user.email);
+    document.getElementById("user-info").innerHTML = user.email;
 
     if (user) {
       console.log(current_User);

@@ -9,52 +9,50 @@ body {
   margin: 0;
 }
 
+.header {
+  height: 4vh;
+  background-color: rgb(235, 53, 82);
+  /* font-size: calc(1px + 150 * ((50vw - 120px) / 1020)); */
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: white;
+}
+
+.title {
+  /* display: flex; */
+  /* justify-content: center; */
+  float: left;
+  margin-left: 50%;
+}
+
+.menu-bttn {
+  float: right;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(235, 53, 82);
+}
+
 .wrapper {
   margin-top: 0;
   color: white;
   padding: inherit;
   margin: inherit;
 }
+
 a {
   text-align: center;
   margin-top: 1px;
   margin-right: 10px;
-}
-
-.menu-btn {
-  background-color: rgb(235, 53, 82);
-  float: right;
-}
-
-.lc {
-  width: 3em;
-  display: inline-block;
-  cursor: pointer;
   color: white;
   text-decoration: none;
-  border-radius: 5px;
-  padding: 0.5em;
-  transition: background-color 0.2s ease, color 0.2s ease, border 0.2s ease;
 }
-.lc:hover {
+
+a:hover {
   text-decoration: underline;
 }
 
-.title {
-  height: 25vh;
-  background-color: rgb(235, 53, 82);
-  font-size: calc(1px + 150 * ((100vw - 320px) / 1120));
-  line-height: 1.2;
-  font-weight: 900;
-  letter-spacing: 0.03em;
-  text-align: center;
-}
-
-.account:hover {
-  text-decoration: none;
-  color: rgb(235, 53, 82);
-  background-color: #fff;
-}
 
 #add-Item {
   margin-top: 10vh;
@@ -178,7 +176,7 @@ button:hover {
   color: white;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 40px 0px 0 0;
+  border-radius: 40px 40px 0 0;
 }
 
 /* .delete-bttn {
