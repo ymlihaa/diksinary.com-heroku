@@ -42,12 +42,7 @@ function request_API() {
 }
 // -------------------------------------------------------------------
 
-function createNewElement(
-  flag,
-  title = "",
-  itemKey,
-  uid = current_User + Math.floor(Math.random() * 100).toString()
-) {
+function createNewElement(flag, title = "", itemKey, uid) {
   let attr;
   let section;
   let h2;
@@ -67,6 +62,11 @@ function createNewElement(
   // card class adding
   attr.value = "card";
   section.setAttributeNode(attr);
+  attr = "";
+
+  attr = document.createAttribute("id");
+  attr.value = itemKey;
+  section.setAttributeNode(attr);
   // --------------------------------------------
 
   // delete button created
@@ -80,14 +80,18 @@ function createNewElement(
   attr = document.createAttribute("class");
   attr.value = "remove-section";
   bttn.setAttributeNode(attr);
+  attr = "";
 
   attr = document.createAttribute("onClick");
-  attr.value = "delelete_Item()";
+  attr.value = "delelete_Item(this.value)";
   bttn.setAttributeNode(attr);
+  attr = "";
 
   attr = document.createAttribute("value");
   attr.value = itemKey;
   bttn.setAttributeNode(attr);
+  attr = "";
+
   pText = document.createTextNode("Sil");
   bttn.appendChild(pText);
 
@@ -99,9 +103,13 @@ function createNewElement(
   attr = document.createAttribute("class");
   attr.value = "card-title";
   h2.setAttributeNode(attr);
+  attr = "";
+
   attr = document.createAttribute("id");
   attr.value = uid;
   h2.setAttributeNode(attr);
+  attr = "";
+
   // card-title class adding /uniq ıd declare h2
   // -----------------------------------------------
 
@@ -130,6 +138,8 @@ function createNewElement(
   attr = document.createAttribute("class");
   attr.value = "card-body";
   p.setAttributeNode(attr);
+  attr = "";
+
   // p element adding card-body class
   pText = document.createTextNode(flag);
   p.appendChild(pText);
@@ -144,6 +154,7 @@ function createNewElement(
   attr = document.createAttribute("class");
   attr.value = "card-timeStamp";
   h5.setAttributeNode(attr);
+  attr = "";
 
   // h5 element adding card-timeStamp class
   node = document.createTextNode(time);
@@ -159,6 +170,7 @@ function createNewElement(
   // -----------------------------------------------
 
   rand_Color(uid);
+  // attr = "";
 }
 
 function saveToDatabase(flag, title) {
@@ -205,9 +217,14 @@ function onLoad() {
     dataRef.once("value", (snapshot) => {
       snapshot.forEach((element) => {
         item = element.key;
+        userID = current_User + Math.floor(Math.random() * 100).toString();
         console.log(item);
-        createNewElement(element.val().word.toString(), element.val().title),
-          item;
+        createNewElement(
+          element.val().word.toString(),
+          element.val().title,
+          item,
+          userID
+        );
       });
     });
   });
@@ -224,8 +241,9 @@ function get_Last_Save() {
     .limitToLast(1)
     .once("child_added", (snapshot) => {
       item = snapshot.key;
+      userID = current_User + Math.floor(Math.random() * 100).toString();
       console.log("get:" + item);
-      createNewElement(snapshot.val().word, snapshot.val().title, item);
+      createNewElement(snapshot.val().word, snapshot.val().title, item, userID);
     });
 }
 
@@ -256,15 +274,20 @@ function rand_Color(uid = "bos") {
     "#9433FF",
   ];
   let rand_val = Math.floor(Math.random() * 10); // returns a random integer from 0 to 9
-  let element = document.querySelector("#" + uid);
+  let element = document.getElementById(uid);
   attr_Color = color_arr[rand_val];
   element.style.backgroundColor = attr_Color;
   console.log(uid);
 }
 
-function delelete_Item() {
-  let removeData = document.querySelector(".remove-section").value;
-  console.log("remove : " + removeData);
+function delelete_Item(val) {
+  let removeData = val;
+  console.log("get value: " + removeData);
+  // let element = this.parentNode.id;
+  let element = document.getElementById(removeData);
+  element.style.display = "none";
+  // element.remove();
+  // alert("Click ID : " + removeData);
 
   firebase
     .database()
@@ -273,7 +296,7 @@ function delelete_Item() {
     .child(removeData)
     .remove();
 
-  console.log("clicked");
+  // alert("silinen ID :" + removeData);
 
-  window.location.href = "index.html";
+  // window.location.href = "index.html";
 }
