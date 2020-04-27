@@ -1,31 +1,93 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Lobster&display=swap&family=PT+Sans:wght@700&display=swap");
 
 body {
-  font-family: "PT Sans", sans-serif !important;
+  font-family: "PT Sans", sans-serif;
+  /* background: url("../images/vici.jpg");
+   */
+  background-color: #225e9e;
 }
 
-.title {
-  height: 25vh;
-  background-color: rgb(235, 53, 82);
-  font-size: calc(1px + 150 * ((100vw - 320px) / 1120));
-  line-height: 1.2;
-  font-weight: 900;
-  letter-spacing: 0.03em;
-  text-align: center;
-}
+/* .container {
+} */
 
-.wrapper {
-  margin-top: 30px;
+.container {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
 }
 
-.button {
-  background-color: rgb(235, 53, 82) !important;
-  border-color: rgb(235, 53, 82) !important;
+.form {
+  width: 400px;
+  height: 400px;
 }
 
-.button:hover {
-  background-color: black !important;
-  border-color: black !important;
+.inputs {
+  margin-top: 30vh;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input {
+  margin-top: 25px;
+  width: 100%;
+  height: 50px;
+  border: 0;
+  font-family: inherit;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 3px;
+  padding-left: 35px;
+
+  -webkit-box-shadow: 0px 6px 18px -3px rgba(0, 0, 0, 0.72);
+  -moz-box-shadow: 0px 6px 18px -3px rgba(0, 0, 0, 0.72);
+  box-shadow: 0px 6px 18px -3px rgba(0, 0, 0, 0.72);
+}
+
+input[type="email"] {
+  background-image: url("../images/user.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: left;
+  background-size: 35px;
+}
+
+input[type="password"] {
+  background-image: url("../images/lock.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: left;
+  background-size: 35px;
+}
+
+.buttons {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+
+button {
+  border-radius: 3px;
+  color: white;
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  border: 0;
+  font-size: 24px;
+  -webkit-box-shadow: 0px 6px 18px -3px rgba(0, 0, 0, 0.72);
+  -moz-box-shadow: 0px 6px 18px -3px rgba(0, 0, 0, 0.72);
+  box-shadow: 0px 6px 18px -3px rgba(0, 0, 0, 0.72);
+  background-color: #66cc00;
+}
+
+button:hover {
+  background-color: black;
+}
+
+a {
+  margin-top: 20px;
+  color: white;
+  cursor: pointer;
 }

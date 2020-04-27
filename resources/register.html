@@ -1,45 +1,29 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../assets/css/login.css" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="../assets/css/register.css" />
   </head>
 
   <body>
-    <section class="title">dıkşınary.com</section>
-    <div class="wrapper">
+    <div class="container">
       <div class="form">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+        <div class="inputs">
           <input
-            type="email"
-            class="form-control"
             id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            type="email"
+            placeholder="Lütfen Email Giriniz"
           />
-          <small id="emailHelp" class="form-text text-muted"
-            >We'll never share your email with anyone else.</small
-          >
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
           <input
-            type="password"
-            class="form-control"
             id="exampleInputPassword1"
+            type="password"
+            placeholder="Lütfen Şifrenizi Giriniz"
           />
         </div>
 
-      <button type="submit" id="btn" class="btn btn-primary button button">
-        Register
-      </button>
-    </div>
-
+        <div class="buttons">
+          <button id="btn-register" type="reset">Kayıt Ol</button>
+        </div>
+      </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
@@ -47,7 +31,6 @@
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
 
-    // ...
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

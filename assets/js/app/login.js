@@ -27,6 +27,6 @@ document.querySelector("#btn-login").addEventListener("click", () => {
     });
 });
 
-document.querySelector("#btn-register").addEventListener("click", () => {
+document.querySelector("#register").addEventListener("click", () => {
   window.location.href = "register.html";
 });

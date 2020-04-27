@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-document.querySelector("#btn").addEventListener("click", () => {
+document.querySelector("#btn-register").addEventListener("click", () => {
   const email = document.getElementById("exampleInputEmail1").value;
   const password = document.getElementById("exampleInputPassword1").value;
 
