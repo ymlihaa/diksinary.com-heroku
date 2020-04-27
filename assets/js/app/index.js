@@ -282,10 +282,11 @@ function rand_Color(uid = "bos") {
 
 function delelete_Item(val) {
   let removeData = val;
-  console.log("get value: " + removeData);
+  // console.log("get value: " + removeData);
   // let element = this.parentNode.id;
   let element = document.getElementById(removeData);
-  element.style.display = "none";
+  // element.style.display = "hide";
+  element.remove();
   // element.remove();
   // alert("Click ID : " + removeData);
 
