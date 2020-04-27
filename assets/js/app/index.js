@@ -274,8 +274,32 @@ function rand_Color(uid = "bos") {
     "#FFE933",
     "#33FF69",
     "#9433FF",
+    "#690500",
+    "#f20089",
+    "#bc00dd",
+    "#f25c54",
+    "#ffd166",
+    "#d90429",
+    "#9e0059",
+    "#2d00f7",
+    "#ff9f1c",
+    "#f3ffbd",
+    "#f8961e",
+    "#f9c74f",
+    "#43aa8b",
+    "#06d6a0",
+    "#ef476f",
+    "#2ec4b6",
+    "#000000",
+    "#934B00",
+    "#210F04",
+    "#46351D",
+    "#BB6B00",
+    "#564D4A",
+    "#5B2333",
+    "#37393A",
   ];
-  let rand_val = Math.floor(Math.random() * 10); // returns a random integer from 0 to 9
+  let rand_val = Math.floor(Math.random() * 32); // returns a random integer from 0 to 9
   let element = document.getElementById(uid);
   attr_Color = color_arr[rand_val];
   element.style.backgroundColor = attr_Color;
