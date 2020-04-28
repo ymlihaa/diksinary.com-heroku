@@ -168,6 +168,7 @@ function createNewElement(flag, title = "", itemKey, uid, time) {
 
   rand_Color(uid);
   // attr = "";
+  document.querySelector(".loader").style.display = "none";
 }
 
 function saveToDatabase(flag, title) {
@@ -235,7 +236,6 @@ function onLoad() {
 }
 
 function get_Last_Save() {
-
   let dataRef = firebase
     .database()
     .ref()
@@ -308,7 +308,7 @@ function rand_Color(uid = "bos") {
     "#5B2333",
     "#37393A",
   ];
-  let rand_val = Math.floor(Math.random() * 32); // returns a random integer from 0 to 9
+  let rand_val = Math.floor(Math.random() * 33); // returns a random integer from 0 to 9
   let element = document.getElementById(uid);
   attr_Color = color_arr[rand_val];
   element.style.backgroundColor = attr_Color;

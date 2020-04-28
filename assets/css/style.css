@@ -4,9 +4,9 @@ body {
   font-weight: 400;
   font-style: normal;
   line-height: 1.8em;
-  background-color: #fcfffd;
+  /* background-color: #fcfffd; */
   /* background-color: #eff7f6; */
-
+  background-color: #f1faee;
 
   padding: 0;
   margin: 0;
@@ -120,11 +120,11 @@ button:hover {
 }
 
 .card {
-  margin: 15px;
+  margin: 10px;
 
   display: grid;
   grid-template-columns: 300px;
-  grid-template-rows: 80px 150px 60px 50px;
+  grid-template-rows: 80px 50px 60px 50px;
   text-align: center;
   width: 300px;
   color: black;
@@ -143,6 +143,22 @@ button:hover {
   transition: all 0.3s ease 0s;
   /* transition: transform 0.3s ease 0s; */
   /* transition: box-shadow 0.2s ease 0s; */
+
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: transitionIn 0.75s;
+}
+
+@keyframes transitionIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card:hover {
@@ -196,4 +212,23 @@ button:hover {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+.loader {
+  margin-top: 150px;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
