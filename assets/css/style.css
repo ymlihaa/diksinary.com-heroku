@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Lobster&display=swap&family=PT+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+
 body {
   font-family: "PT Sans", sans-serif;
   font-weight: 400;
@@ -23,21 +25,26 @@ body {
   color: black;
 }
 
+
+
 .title {
-  /* display: flex; */
-  /* justify-content: center; */
-  float: left;
-  margin-left: 50%;
+  font-family: "Monoton", cursive;
+  color: white;
+  font-size: 64px;
+  text-align: center;
+  color: black;
 }
 
 .menu-bttn {
-  float: right;
+  display: block;
+  /* float: right; */
+
   cursor: pointer;
   /* background-color: rgb(235, 53, 82); */
 }
 
 .wrapper {
-  margin-top: 0;
+
   color: white;
   padding: inherit;
   margin: inherit;
@@ -56,7 +63,7 @@ a:hover {
 }
 
 #add-Item {
-  margin-top: 10vh;
+  margin-top: 12vh;
   display: flex;
   justify-content: center;
   align-items: center;
