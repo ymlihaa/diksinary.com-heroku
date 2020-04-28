@@ -46,7 +46,7 @@ input {
   padding: 15px;
   font-size: 16px;
   border-radius: 3px;
-  padding-left: 40px;
+  padding-left: 35px;
 
   -webkit-box-shadow: 0px 6px 18px -3px rgba(0, 0, 0, 0.72);
   -moz-box-shadow: 0px 6px 18px -3px rgba(0, 0, 0, 0.72);
@@ -56,17 +56,15 @@ input {
 input[type="email"] {
   background-image: url("../images/user.svg");
   background-repeat: no-repeat;
-  background-position: center;
-  background-position: left;
-  background-size: 35px;
+  background-position: left 5px center;
+  background-size: 25px;
 }
 
 input[type="password"] {
   background-image: url("../images/lock.svg");
   background-repeat: no-repeat;
-  background-position: center;
-  background-position: left;
-  background-size: 35px;
+  background-position: left 5px center;
+  background-size: 25px;
 }
 
 .buttons {
