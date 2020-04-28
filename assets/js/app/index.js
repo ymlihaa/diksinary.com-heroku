@@ -196,8 +196,6 @@ function onLoad() {
     document.getElementById("user-info").innerHTML = user.email;
 
     if (user) {
-      console.log(current_User);
-
       document.querySelector("#logout").addEventListener("click", () => {
         firebase
           .auth()
@@ -222,7 +220,6 @@ function onLoad() {
       snapshot.forEach((element) => {
         item = element.key;
         userID = current_User + Math.floor(Math.random() * 100).toString();
-        console.log(item);
         createNewElement(
           element.val().word.toString(),
           element.val().title,
@@ -270,13 +267,12 @@ function get_Last_Save() {
 //   onload();
 // });
 
-function rand_Color(uid = "bos") {
+function rand_Color(uid) {
   // BURAYA RANDOM FONKSİYONU YARDIMIYLA 1 ARRAYDEN RENK KODLARI SEÇİLEREK CARDIN CSS İ NE EKLENECEK
   const color_arr = [
     "#FF5733",
     "#581845",
     "#C70039",
-    "#DAF7A6",
     "#FF33C4",
     "#6533FF",
     "#33FF82",
@@ -292,7 +288,6 @@ function rand_Color(uid = "bos") {
     "#9e0059",
     "#2d00f7",
     "#ff9f1c",
-    "#f3ffbd",
     "#f8961e",
     "#f9c74f",
     "#43aa8b",
@@ -308,11 +303,17 @@ function rand_Color(uid = "bos") {
     "#5B2333",
     "#37393A",
   ];
-  let rand_val = Math.floor(Math.random() * 33); // returns a random integer from 0 to 9
+  let rand_val = Math.floor(Math.random() * color_arr.length); // returns a random integer from 0 to 9
   let element = document.getElementById(uid);
+  console.log("seçilen element" +"  |" + element.nodeName);
   attr_Color = color_arr[rand_val];
+  console.log(
+    "burası index : " + (rand_val + 1) + " |" + "renk kodu " + attr_Color
+  );
   element.style.backgroundColor = attr_Color;
-  console.log(uid);
+  if (uid === undefined) {
+    console.log("burası randcolor uid : " + uid);
+  }
 }
 
 function delelete_Item(val) {
