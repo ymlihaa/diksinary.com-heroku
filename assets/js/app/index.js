@@ -124,7 +124,6 @@ function onLoad() {
   firebase.auth().onAuthStateChanged((user) => {
     let data;
     current_User = user.uid;
-    // console.log("display name : " + user.email);
     document.getElementById("user-info").innerHTML = user.email;
 
     if (user) {
@@ -136,11 +135,7 @@ function onLoad() {
             window.location.href = "login.html";
           });
       });
-
-      // document.querySelector("#SendToData").addEventListener("click", () => {});
     }
-
-    // alert(current_User);
 
     let dataRef = firebase
       .database()
@@ -176,7 +171,6 @@ function get_Last_Save() {
     .once("child_added", (snapshot) => {
       item = snapshot.key;
       userID = current_User + Math.floor(Math.random() * 100).toString();
-      console.log("get:" + item);
       createNewElement(
         snapshot.val().word,
         snapshot.val().title,
@@ -225,36 +219,16 @@ function rand_Color(uid) {
   ];
   let rand_val = Math.floor(Math.random() * color_arr.length); // returns a random integer from 0 to 9
   let element = document.getElementById(uid);
-  console.log("seçilen element" + "  |" + element.nodeName);
   attr_Color = color_arr[rand_val];
-  console.log(
-    "burası index : " + (rand_val + 1) + " |" + "renk kodu " + attr_Color
-  );
+
   element.style.backgroundColor = attr_Color;
-  if (uid === undefined) {
-    console.log("burası randcolor uid : " + uid);
-  }
 }
 
-// function delelete_Item(val) {
-//   // let removeData = val;
-//   // let element = document.getElementById(removeData);
-//   // element.remove();
-//   // firebase
-//   //   .database()
-//   //   .ref("users/" + current_User)
-//   //   .child("cards")
-//   //   .child(removeData)
-//   //   .remove();
-// }
-
-// // var itemList = document.querySelector(".buttons");
 document.querySelector(".cards").addEventListener("click", deleted);
+document.querySelector("#word-input").addEventListener("keyup", filter);
 
 function deleted(e) {
-  // if(e.target.clas)
   // console.log(e.target.value);
-  console.log(e.target.value);
   if (e.target.value != undefined) {
     if (confirm("eminmisin")) {
       let removeData = e.target.value;
@@ -269,4 +243,22 @@ function deleted(e) {
         .remove();
     }
   }
+}
+var itemList = document.getElementsByClassName("cards");
+
+function filter(e) {
+  console.log(itemList[0]);
+  // console.log("burası e target : " + e.target.value);
+  var text = e.target.value.toLowerCase();
+  var keys = itemList[0].getElementsByTagName("section");
+  console.log(keys);
+  Array.from(keys).forEach((key) => {
+    var itemName = key.children;
+    var isKey = itemName[1].textContent;
+    if (isKey.toLowerCase().indexOf(text) != -1) {
+      key.style.display = "";
+    } else {
+      key.style.display = "none";
+    }
+  });
 }
