@@ -36,7 +36,6 @@ function request_API() {
         data.text.toString(),
         document.getElementById("word-input").toString()
       );
-      get_Last_Save();
       document.querySelector("#word-input").value = "";
     });
 }
@@ -103,21 +102,56 @@ function createNewElement(flag, title = "", itemKey, uid, time) {
   document.querySelector(".loader").style.display = "none";
 }
 
+// function saveToDatabase(flag, title) {
+//   let time = new Date();
+//   time = time.toDateString();
+//   data = document.querySelector("#word-input").value;
+//   firebase
+//     .database()
+//     .ref()
+//     .child("users")
+//     .child(current_User)
+//     .child("cards")
+//     .push({
+//       word: flag,
+//       title: document.querySelector("#word-input").value.toString(),
+//       time: time,
+//     });
+// }
+
 function saveToDatabase(flag, title) {
-  let time = new Date();
-  time = time.toDateString();
-  data = document.querySelector("#word-input").value;
-  firebase
-    .database()
-    .ref()
-    .child("users")
-    .child(current_User)
-    .child("cards")
-    .push({
-      word: flag,
-      title: document.querySelector("#word-input").value.toString(),
-      time: time,
-    });
+  // var text = e.target.value.toLowerCase();
+  var text = document.getElementById("word-input").value;
+  var keys = itemList[0].getElementsByTagName("section");
+  var itemName;
+  var isKey = [];
+  console.log(keys);
+  Array.from(keys).forEach((key) => {
+    itemName = key.children;
+    isKey.push(itemName[1].textContent);
+  });
+  console.log(text);
+
+  console.log(isKey.includes(text));
+  if (isKey.includes(text)) {
+    alert("bu zaten var");
+  } else {
+    let time = new Date();
+    time = time.toDateString();
+    data = document.querySelector("#word-input").value;
+    firebase
+      .database()
+      .ref()
+      .child("users")
+      .child(current_User)
+      .child("cards")
+      .push({
+        word: flag,
+        title: document.querySelector("#word-input").value.toString(),
+        time: time,
+      });
+    get_Last_Save();
+  }
 }
 
 function onLoad() {
@@ -251,7 +285,6 @@ function filter(e) {
   // console.log("burası e target : " + e.target.value);
   var text = e.target.value.toLowerCase();
   var keys = itemList[0].getElementsByTagName("section");
-  console.log(keys);
   Array.from(keys).forEach((key) => {
     var itemName = key.children;
     var isKey = itemName[1].textContent;
