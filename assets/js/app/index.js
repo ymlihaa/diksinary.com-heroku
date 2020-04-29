@@ -135,10 +135,13 @@ function saveToDatabase(flag, title) {
   console.log(isKey.includes(text));
   if (isKey.includes(text)) {
     alert("bu zaten var");
+    Array.from(keys).forEach((key) => {
+      itemName = key.children;
+      key.style.display = "";
+    });
   } else {
     let time = new Date();
     time = time.toDateString();
-    data = document.querySelector("#word-input").value;
     firebase
       .database()
       .ref()
@@ -150,6 +153,7 @@ function saveToDatabase(flag, title) {
         title: document.querySelector("#word-input").value.toString(),
         time: time,
       });
+
     get_Last_Save();
   }
 }
