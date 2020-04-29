@@ -102,23 +102,6 @@ function createNewElement(flag, title = "", itemKey, uid, time) {
   document.querySelector(".loader").style.display = "none";
 }
 
-// function saveToDatabase(flag, title) {
-//   let time = new Date();
-//   time = time.toDateString();
-//   data = document.querySelector("#word-input").value;
-//   firebase
-//     .database()
-//     .ref()
-//     .child("users")
-//     .child(current_User)
-//     .child("cards")
-//     .push({
-//       word: flag,
-//       title: document.querySelector("#word-input").value.toString(),
-//       time: time,
-//     });
-// }
-
 function saveToDatabase(flag, title) {
   // var text = e.target.value.toLowerCase();
   var text = document.getElementById("word-input").value;
@@ -136,7 +119,6 @@ function saveToDatabase(flag, title) {
   if (isKey.includes(text)) {
     alert("bu zaten var");
     Array.from(keys).forEach((key) => {
-      itemName = key.children;
       key.style.display = "";
     });
   } else {
@@ -266,7 +248,10 @@ document.querySelector(".cards").addEventListener("click", deleted);
 document.querySelector("#word-input").addEventListener("keyup", filter);
 
 function deleted(e) {
-  // console.log(e.target.value);
+  var itemName;
+  var text = document.getElementById("word-input").value;
+  var keys = itemList[0].getElementsByTagName("section");
+
   if (e.target.value != undefined) {
     if (confirm("eminmisin")) {
       let removeData = e.target.value;
@@ -279,6 +264,10 @@ function deleted(e) {
         .child("cards")
         .child(removeData)
         .remove();
+
+      Array.from(keys).forEach((key) => {
+        key.style.display = "";
+      });
     }
   }
 }
