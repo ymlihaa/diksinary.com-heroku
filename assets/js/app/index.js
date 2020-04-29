@@ -52,122 +52,54 @@ function createNewElement(flag, title = "", itemKey, uid, time) {
   let deletebttn;
 
   // CARDLARIN HTML ELEMENTİ OLARAK KURULUMU
-
   // Section tag created
   section = document.createElement("section");
-  attr = document.createAttribute("class");
-  // card class adding
-  attr.value = "card";
-  section.setAttributeNode(attr);
-  attr = "";
-
-  attr = document.createAttribute("id");
-  attr.value = itemKey;
-  section.setAttributeNode(attr);
+  section.className = "card";
+  section.setAttribute("id", itemKey);
   // --------------------------------------------
-
   // delete button created
   // -----------------------------------------------
-
-  // div = document.createElement("div");
-  // attr = document.createAttribute("class");
-  // attr.value = "remove-section";
-  // div.setAttributeNode(attr);
   bttn = document.createElement("BUTTON");
-  attr = document.createAttribute("class");
-  attr.value = "remove-section";
-  bttn.setAttributeNode(attr);
-  attr = "";
-
-  attr = document.createAttribute("onClick");
-  attr.value = "delelete_Item(this.value)";
-  bttn.setAttributeNode(attr);
-  attr = "";
-
-  attr = document.createAttribute("value");
-  attr.value = itemKey;
-  bttn.setAttributeNode(attr);
-  attr = "";
-
-  pText = document.createTextNode("Sil");
-  bttn.appendChild(pText);
-
+  bttn.className = "remove-section";
+  bttn.setAttribute("value", itemKey);
+  bttn.appendChild(document.createTextNode("Sil"));
   section.appendChild(bttn);
-
   // -----------------------------------------------
   // h2 element created
   h2 = document.createElement("h2");
-  attr = document.createAttribute("class");
-  attr.value = "card-title";
-  h2.setAttributeNode(attr);
-  attr = "";
-
-  attr = document.createAttribute("id");
-  attr.value = uid;
-  h2.setAttributeNode(attr);
-  attr = "";
-
-  // card-title class adding /uniq ıd declare h2
-  // -----------------------------------------------
-
-  // -----------------------------------------------
-
+  h2.className = "card-title";
+  h2.setAttribute("id", uid);
   // İnput dolumu bosmu ?
   if (!(title == "")) {
-    node = document.createTextNode(
-      // document.getElementById("word-input").value.toUpperCase()
-      title
-    );
+    h2.appendChild(document.createTextNode(title));
   } else {
-    node = document.createTextNode(document.querySelector("#word-input").value);
+    h2.appendChild(
+      document.createTextNode(document.querySelector("#word-input").value)
+    );
   }
   // -----------------------------------------------------------------
-
-  h2.appendChild(node);
   // h2 elementinin texti eklendi
   section.appendChild(h2);
-  //h2 elementi section elementine child olarak bağlandı
-  // -----------------------------------------------
-
   // -----------------------------------------------
   // p element created
   p = document.createElement("p");
-  attr = document.createAttribute("class");
-  attr.value = "card-body";
-  p.setAttributeNode(attr);
-  attr = "";
-
-  // p element adding card-body class
-  pText = document.createTextNode(flag);
-  p.appendChild(pText);
+  p.className = "card-body";
+  p.appendChild(document.createTextNode(flag));
   section.appendChild(p);
   // p element adding child section
   // -----------------------------------------------
-
-  // -----------------------------------------------
-
   // h5 element created
   h5 = document.createElement("h5");
-  attr = document.createAttribute("class");
-  attr.value = "card-timeStamp";
-  h5.setAttributeNode(attr);
-  attr = "";
-
+  h5.className = "card-timeStamp";
   // h5 element adding card-timeStamp class
-  node = document.createTextNode(time);
-  h5.appendChild(node);
+  h5.appendChild(document.createTextNode(time));
   section.appendChild(h5);
   // h5 element adding child section
   // -----------------------------------------------
-
-  // -----------------------------------------------
-
   // section elementi classı cards olan elemente child olarak eklendi
   document.querySelector(".cards").appendChild(section);
   // -----------------------------------------------
-
   rand_Color(uid);
-  // attr = "";
   document.querySelector(".loader").style.display = "none";
 }
 
@@ -255,18 +187,6 @@ function get_Last_Save() {
     });
 }
 
-// document.querySelector(".remove-section").addEventListener("click", () => {
-//   console.log("click");
-//   let removeData = document.querySelector(this).data;
-//   firebase
-//     .database()
-//     .ref("users/" + current_User)
-//     .child("cards")
-//     .child(removeData)
-//     .remove();
-//   onload();
-// });
-
 function rand_Color(uid) {
   // BURAYA RANDOM FONKSİYONU YARDIMIYLA 1 ARRAYDEN RENK KODLARI SEÇİLEREK CARDIN CSS İ NE EKLENECEK
   const color_arr = [
@@ -305,7 +225,7 @@ function rand_Color(uid) {
   ];
   let rand_val = Math.floor(Math.random() * color_arr.length); // returns a random integer from 0 to 9
   let element = document.getElementById(uid);
-  console.log("seçilen element" +"  |" + element.nodeName);
+  console.log("seçilen element" + "  |" + element.nodeName);
   attr_Color = color_arr[rand_val];
   console.log(
     "burası index : " + (rand_val + 1) + " |" + "renk kodu " + attr_Color
@@ -316,24 +236,37 @@ function rand_Color(uid) {
   }
 }
 
-function delelete_Item(val) {
-  let removeData = val;
-  // console.log("get value: " + removeData);
-  // let element = this.parentNode.id;
-  let element = document.getElementById(removeData);
-  // element.style.display = "hide";
-  element.remove();
-  // element.remove();
-  // alert("Click ID : " + removeData);
+// function delelete_Item(val) {
+//   // let removeData = val;
+//   // let element = document.getElementById(removeData);
+//   // element.remove();
+//   // firebase
+//   //   .database()
+//   //   .ref("users/" + current_User)
+//   //   .child("cards")
+//   //   .child(removeData)
+//   //   .remove();
+// }
 
-  firebase
-    .database()
-    .ref("users/" + current_User)
-    .child("cards")
-    .child(removeData)
-    .remove();
+// // var itemList = document.querySelector(".buttons");
+document.querySelector(".cards").addEventListener("click", deleted);
 
-  // alert("silinen ID :" + removeData);
+function deleted(e) {
+  // if(e.target.clas)
+  // console.log(e.target.value);
+  console.log(e.target.value);
+  if (e.target.value != undefined) {
+    if (confirm("eminmisin")) {
+      let removeData = e.target.value;
+      let element = document.getElementById(removeData);
+      element.remove();
 
-  // window.location.href = "index.html";
+      firebase
+        .database()
+        .ref("users/" + current_User)
+        .child("cards")
+        .child(removeData)
+        .remove();
+    }
+  }
 }

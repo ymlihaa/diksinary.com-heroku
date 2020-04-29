@@ -15,7 +15,7 @@ body {
 }
 
 .header {
-  height: 10vh;
+  height: 15vh;
   /* background: url("../images/rene.jpg"); */
   /* font-size: calc(1px + 150 * ((50vw - 120px) / 1020)); */
   line-height: 1.2;
@@ -227,7 +227,7 @@ button:hover {
 .loader {
   margin-top: 150px;
   border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+  border-top: 16px solid #225e9e; /* Blue */
   border-radius: 50%;
   width: 60px;
   height: 60px;
