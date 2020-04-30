@@ -13,6 +13,64 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+class section {
+  // Creating HTML elements
+  constructor() {
+    this.section = document.createElement("section");
+    this.bttn = document.createElement("BUTTON");
+    this.h2 = document.createElement("h2");
+    this.p = document.createElement("p");
+    this.h5 = document.createElement("h5");
+  }
+  // Set CLASS attribute
+  addtribute_Class(section_Attr, bttn_Attr, h2_Attr, p_Attr, h5_Attr) {
+    this.section.className = section_Attr;
+    this.bttn.className = bttn_Attr;
+    this.h2.className = h2_Attr;
+    this.p.className = p_Attr;
+    this.h5.className = h5_Attr;
+  }
+  // Set İD attribute
+  addtribute_ID(section_Attr, bttn_Attr, h2_Attr) {
+    this.section.setAttribute("id", section_Attr);
+    this.bttn.setAttribute("value", bttn_Attr);
+    this.h2.setAttribute("id", h2_Attr);
+  }
+  // Set textContent
+  add_textContent(tagName, text) {
+    switch (tagName) {
+      case "bttn":
+        this.bttn.appendChild(document.createTextNode("Sil"));
+        break;
+      case "h2":
+        if (!(text == "")) {
+          this.h2.appendChild(document.createTextNode(text));
+        } else {
+          this.h2.appendChild(
+            document.createTextNode(document.querySelector("#word-input").value)
+          );
+        }
+        break;
+      case "p":
+        this.p.appendChild(document.createTextNode(text));
+        break;
+      case "h5":
+        this.h5.appendChild(document.createTextNode(text));
+        break;
+    }
+  }
+
+  // Element Mounting
+  element_Mount() {
+    let body = document.getElementsByClassName("cards");
+    this.section.appendChild(this.bttn);
+    this.section.appendChild(this.h2);
+    this.section.appendChild(this.p);
+    this.section.appendChild(this.h5);
+    document.querySelector(".cards").appendChild(this.section);
+  }
+}
+
 const lang = "tr";
 const API_KEY =
   " trnsl.1.1.20200418T031625Z.9cec77fc8baa52af.4342049eae7cc356f4d7cd8f54034fd7a001783f";
@@ -37,59 +95,6 @@ function request_API() {
       document.querySelector("#word-input").value = "";
     });
 }
-// -------------------------------------------------------------------
-
-class section {
-  constructor() {
-    this.section = document.createElement("section");
-    this.bttn = document.createElement("BUTTON");
-    this.h2 = document.createElement("h2");
-    this.p = document.createElement("p");
-    this.h5 = document.createElement("h5");
-  }
-  addtribute_Class(section_Attr, bttn_Attr, h2_Attr, p_Attr, h5_Attr) {
-    this.section.className = section_Attr;
-    this.bttn.className = bttn_Attr;
-    this.h2.className = h2_Attr;
-    this.p.className = p_Attr;
-    this.h5.className = h5_Attr;
-  }
-  addtribute_ID(section_Attr, bttn_Attr, h2_Attr) {
-    this.section.setAttribute("id", section_Attr);
-    this.bttn.setAttribute("value", bttn_Attr);
-    this.h2.setAttribute("id", h2_Attr);
-  }
-  add_textContent(tagName, text) {
-    switch (tagName) {
-      case "bttn":
-        this.bttn.appendChild(document.createTextNode("Sil"));
-        break;
-      case "h2":
-        if (!(text == "")) {
-          this.h2.appendChild(document.createTextNode(text));
-        } else {
-          this.h2.appendChild(
-            document.createTextNode(document.querySelector("#word-input").value)
-          );
-        }
-        break;
-      case "p":
-        this.p.appendChild(document.createTextNode(text));
-        break;
-      case "h5":
-        this.h5.appendChild(document.createTextNode(text));
-        break;
-    }
-  }
-  element_Mount() {
-    let body = document.getElementsByClassName("cards");
-    this.section.appendChild(this.bttn);
-    this.section.appendChild(this.h2);
-    this.section.appendChild(this.p);
-    this.section.appendChild(this.h5);
-    document.querySelector(".cards").appendChild(this.section);
-  }
-}
 
 function createNewElement(flag, title = "", itemKey, uid, time) {
   const Card = new section();
@@ -108,64 +113,7 @@ function createNewElement(flag, title = "", itemKey, uid, time) {
   Card.add_textContent("p", flag);
   Card.add_textContent("h5", time);
   Card.element_Mount();
-  console.log(Card);
 
-  // let attr;
-  // let section;
-  // let h2;
-  // let h5;
-  // let node;
-  // let p;
-  // let deletebttn;
-
-  // // CARDLARIN HTML ELEMENTİ OLARAK KURULUMU
-  // // Section tag created
-  // section = document.createElement("section");
-  // section.className = "card";
-  // section.setAttribute("id", itemKey);
-  // // --------------------------------------------
-  // // delete button created
-  // // -----------------------------------------------
-  // bttn = document.createElement("BUTTON");
-  // bttn.className = "remove-section";
-  // bttn.setAttribute("value", itemKey);
-  // bttn.appendChild(document.createTextNode("Sil"));
-  // section.appendChild(bttn);
-  // // -----------------------------------------------
-  // // h2 element created
-  // h2 = document.createElement("h2");
-  // h2.className = "card-title";
-  // h2.setAttribute("id", uid);
-  // // İnput dolumu bosmu ?
-  // if (!(title == "")) {
-  //   h2.appendChild(document.createTextNode(title));
-  // } else {
-  //   h2.appendChild(
-  //     document.createTextNode(document.querySelector("#word-input").value)
-  //   );
-  // }
-  // // -----------------------------------------------------------------
-  // // h2 elementinin texti eklendi
-  // section.appendChild(h2);
-  // // -----------------------------------------------
-  // // p element created
-  // p = document.createElement("p");
-  // p.className = "card-body";
-  // p.appendChild(document.createTextNode(flag));
-  // section.appendChild(p);
-  // // p element adding child section
-  // // -----------------------------------------------
-  // // h5 element created
-  // h5 = document.createElement("h5");
-  // h5.className = "card-timeStamp";
-  // // h5 element adding card-timeStamp class
-  // h5.appendChild(document.createTextNode(time));
-  // section.appendChild(h5);
-  // // h5 element adding child section
-  // // -----------------------------------------------
-  // // section elementi classı cards olan elemente child olarak eklendi
-  // document.querySelector(".cards").appendChild(section);
-  // -----------------------------------------------
   rand_Color(uid);
   document.querySelector(".loader").style.display = "none";
 }
@@ -205,6 +153,13 @@ function saveToDatabase(flag, title) {
       });
 
     get_Last_Save();
+    setTimeout(
+      () =>
+        Array.from(keys).forEach((key) => {
+          key.style.display = "";
+        }),
+      1000
+    );
   }
 }
 
@@ -320,6 +275,7 @@ function rand_Color(uid) {
 
 document.querySelector(".cards").addEventListener("click", deleted);
 document.querySelector("#word-input").addEventListener("keyup", filter);
+var itemList = document.getElementsByClassName("cards");
 
 function deleted(e) {
   var itemName;
@@ -346,7 +302,6 @@ function deleted(e) {
     }
   }
 }
-var itemList = document.getElementsByClassName("cards");
 
 function filter(e) {
   console.log(itemList[0]);
