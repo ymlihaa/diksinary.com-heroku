@@ -19,7 +19,7 @@ document.querySelector("#btn-login").addEventListener("click", () => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(() => {
-      window.location.href = "index.html";
+      window.location.href = "https://diksinary01.herokuapp.com/resources/index.html";
     })
     .catch((err) => {
       alert("KULLANICI ADI YADA ŞİFRE HATALI ");
