@@ -1,5 +1,6 @@
 var item;
 var current_User;
+const baseURL="https://diksinary01.herokuapp.com/resources/";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCTwdHnyx32m8Ksktkevcjn0gzRXfBpWio",
@@ -176,7 +177,7 @@ function onLoad() {
           .auth()
           .signOut()
           .then(() => {
-            window.location.href = "login.html";
+            window.location.href = baseURL+"login.html";
           });
       });
     }

@@ -1,3 +1,5 @@
+const baseURL="https://diksinary01.herokuapp.com/resources/";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCTwdHnyx32m8Ksktkevcjn0gzRXfBpWio",
   authDomain: "mysozluk-39b91.firebaseapp.com",
@@ -19,7 +21,7 @@ document.querySelector("#btn-login").addEventListener("click", () => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(() => {
-      window.location.href = "https://diksinary01.herokuapp.com/resources/index.html";
+      window.location.href = baseURL+"index.html";
     })
     .catch((err) => {
       alert("KULLANICI ADI YADA ŞİFRE HATALI ");
@@ -28,5 +30,5 @@ document.querySelector("#btn-login").addEventListener("click", () => {
 });
 
 document.querySelector("#register").addEventListener("click", () => {
-  window.location.href = "register.html";
+  window.location.href = baseURL+"register.html";
 });

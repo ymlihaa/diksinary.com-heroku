@@ -1,3 +1,6 @@
+const baseURL="https://diksinary01.herokuapp.com/resources/";
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyCTwdHnyx32m8Ksktkevcjn0gzRXfBpWio",
   authDomain: "mysozluk-39b91.firebaseapp.com",
@@ -23,7 +26,7 @@ document.querySelector("#btn-register").addEventListener("click", () => {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
-          window.location.href = "index.html";
+          window.location.href = baseURL+"index.html";
         });
     })
     .catch((err) => {
